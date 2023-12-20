@@ -11,7 +11,7 @@ import {DataService} from "../data.service";
 export class SidebarComponent {
 
   constructor(protected dataService: DataService) {
-    dataService.getAllCategories();
+    dataService.loadAllCategories();
   }
 
 }

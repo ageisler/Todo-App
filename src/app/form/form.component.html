@@ -1,34 +1,50 @@
-@if (dataService.saveSuccessful){
-  <div class="alert alert-success">
-    <p>Todo wurde erfolgreich hinzugefügt!</p>
+<form class="form-horizontal" (ngSubmit)="dataService.addTodo(newTodoForm)" #newTodoForm="ngForm" novalidate>
+  <div class="row">
+    <div class="col-lg-9">
+      <h2>Neues Todo anlegen</h2>
+    </div>
+    <div class="col-lg-3 me-auto">
+      <app-priority-chooser></app-priority-chooser>
+    </div>
   </div>
-}
-<form class="form-horizontal" (ngSubmit)="dataService.addTodo(newTodoForm.value)" #newTodoForm="ngForm">
-  <div class="form-group row">
+  <hr>
+  <div class="form-group row mt-5">
     <label class="col-sm-2 offset-sm-2 col-form-label ">Bezeichnung:</label>
     <div class="col-sm-6">
-      <input class="form-control" type="text" [(ngModel)]="dataService.newTodoDescription" name="description">
+      <input class="form-control" type="text" [(ngModel)]="dataService.newTodoDescription" name="description" required>
     </div>
   </div>
   <div class="form-group row mt-4">
     <label class="col-sm-2 offset-sm-2 col-form-label">Fällig bis:</label>
     <div class="col-sm-6">
-      <input class="form-control" type="date" [(ngModel)]="dataService.newTodoDueDate" name="dueDate">
+      <input class="form-control" type="date" [(ngModel)]="dataService.newTodoDueDate" name="dueDate" required>
     </div>
   </div>
   <div class="form-group row mt-4">
     <label class="col-sm-2 offset-sm-2 col-form-label">Kategorie</label>
     <div class="col-sm-6">
-      <select class="form-select" id="categoriesList" [(ngModel)]="dataService.newTodoCategory" name="category">
-        @for (category of dataService.categories; track $index ) {
-          <option [value]="category">{{category}}</option>
+      <div class="d-flex align-items-center"> <!-- Use flex container to align items horizontally -->
+        @if(showInputField){
+          <input type ="text" class="form-control" id="categoriesList" [(ngModel)]="dataService.newTodoCategory" name="category" required>
+          <button class="btn btn-primary" (click)="showInputField = false"><span class="bi bi-abort"></span></button>
         }
-      </select>
+        @else {
+        <select class="form-select" id="categoriesList" [(ngModel)]="dataService.newTodoCategory" name="category" required>
+        @for (category of dataService.categories; track $index ) {
+        <option [value]="category">{{category}}</option>
+        }
+        </select>
+        <button class="btn btn-primary" (click)="showInputField = true"><span class="bi bi-plus"></span></button>
+        }
+
+    </div>
+    <div>
+    </div>
     </div>
   </div>
   <div class="form-group row mt-4">
     <div class="col-sm-2 offset-sm-4">
-      <input class="btn btn-primary" type="submit" value="Hinzufügen">
+      <input class="btn btn-primary" type="submit" value="Hinzufügen" [disabled]="!newTodoForm.valid">
     </div>
   </div>
 </form>

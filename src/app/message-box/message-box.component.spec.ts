@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NewTodoComponent } from './new-todo.component';
+import { MessageBoxComponent } from './message-box.component';
 
-describe('NewTodoComponent', () => {
-  let component: NewTodoComponent;
-  let fixture: ComponentFixture<NewTodoComponent>;
+describe('MessageBoxComponent', () => {
+  let component: MessageBoxComponent;
+  let fixture: ComponentFixture<MessageBoxComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [NewTodoComponent]
+      imports: [MessageBoxComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(NewTodoComponent);
+    fixture = TestBed.createComponent(MessageBoxComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

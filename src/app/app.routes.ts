@@ -1,7 +1,7 @@
 import {Routes} from '@angular/router';
-import {ListComponent} from "./list/list.component";
-import {NewTodoComponent} from "./new-todo/new-todo.component";
 import {ListViewComponent} from "./list-view/list-view.component";
+import {FormComponent} from "./form/form.component";
+import {SettingsComponent} from "./settings/settings.component";
 
 export const routes: Routes = [
   {
@@ -11,12 +11,12 @@ export const routes: Routes = [
   },
   {
     path: "new",
-    component: NewTodoComponent,
+    component: FormComponent,
     title: "Neues Todo"
   },
   {
     path: "settings",
-    component: ListComponent,
+    component: SettingsComponent,
     title: "Einstellungen"
   }
 ];

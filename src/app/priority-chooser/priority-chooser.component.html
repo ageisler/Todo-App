@@ -1,0 +1,10 @@
+<div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+  <input type="radio" class="btn-check" id="priorityLow" autocomplete="off" value="1" [(ngModel)]="dataService.newTodoPriority" name="priority" required [checked]="dataService.newTodoPriority === '1'">
+  <label class="btn btn-outline-primary" for="priorityLow"><span class="bi bi-caret-up-fill"></span></label>
+
+  <input type="radio" class="btn-check" id="priorityMiddle" autocomplete="off" value="2" [(ngModel)]="dataService.newTodoPriority" name="priority" [checked]="dataService.newTodoPriority === '2'">
+  <label class="btn btn-outline-primary" for="priorityMiddle"><span class="bi bi-star-fill text-warning"></span></label>
+
+  <input type="radio" class="btn-check" id="priorityHigh" autocomplete="off" value="3" [(ngModel)]="dataService.newTodoPriority" name="priority" [checked]="dataService.newTodoPriority === '3'">
+  <label class="btn btn-outline-primary" for="priorityHigh"><span class="bi bi-exclamation-circle-fill text-danger"></span></label>
+</div>

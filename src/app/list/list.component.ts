@@ -3,11 +3,12 @@ import {DataService} from "../data.service";
 import {SearchFilterPipe} from "../search-filter.pipe";
 import {Todo} from "../Todo";
 import {FormsModule} from "@angular/forms";
+import {CommonModule} from "@angular/common";
 
 @Component({
   selector: 'app-list',
   standalone: true,
-  imports: [SearchFilterPipe, FormsModule],
+  imports: [CommonModule, SearchFilterPipe, FormsModule],
   templateUrl: './list.component.html',
   styleUrl: './list.component.css'
 })
@@ -17,6 +18,7 @@ export class ListComponent {
   filteredItems: Todo[] = [];
 
   constructor(protected dataService: DataService) {
+    dataService.resetBaseVariables();
   }
 
   search(searchTerm: string) {

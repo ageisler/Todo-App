@@ -10,12 +10,12 @@
         <div class="d-flex flex-column text-blue">
           <ul class="nav flex-column mb-auto">
             <li class="nav-item">
-              <button class="btn nav-link active">alle</button>
+              <button class="btn nav-link active" (click)="dataService.filterByCategory()">alle</button>
             </li>
             @for (category of dataService.categories; track $index ) {
             <li class="nav-item">
-              <button class="btn nav-link">{{category}}</button>
-        </li>
+              <button class="btn nav-link" (click)="dataService.filterByCategory(category)">{{category}}</button>
+            </li>
             }
           </ul>
         </div>

@@ -1,15 +1,17 @@
 <div>
-  <div class="row">
-    <div>
+  <div class="row col-lg-12 mb-3">
+    <div class="col-lg-8 col-xs-12">
       <h2>Todo-Liste</h2>
     </div>
-    <form>
-      <div class="input-group mb-3">
-        <span class="bi bi-search input-group-text"></span>
-        <input aria-describedby="basic-addon1" aria-label="search" class="form-control" placeholder="Wonach suchen Sie?" type="text"
-               [(ngModel)]="searchTerm" (input)="search(searchTerm)" name="searchTerm">
-      </div>
-    </form>
+    <div class="col-lg-4 col-xs-12 me-auto">
+      <form>
+        <div class="input-group">
+          <span class="bi bi-search input-group-text"></span>
+          <input class="form-control" placeholder="Wonach suchen Sie?" type="text"
+                 [(ngModel)]="searchTerm" (input)="search(searchTerm)" name="searchTerm">
+        </div>
+      </form>
+    </div>
   </div>
   <div class="row">
     <table class="table">
@@ -25,16 +27,60 @@
         </tr>
       </thead>
       <tbody>
-        @for (todo of dataService.Todos | searchFilter: searchTerm; track $index){
-          <tr>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
+        @if(dataService.readyTodoSetting) {
+          @for (todo of dataService.activeTodos | searchFilter: searchTerm; track $index){
+          <tr (dblclick)="dataService.changeStatus(todo)">
+            <td [class]="todo.status ? 'bi bi-check' : ''"></td>
+            <ng-container [ngSwitch]="todo.priority">
+              <td *ngSwitchDefault></td>
+              <td *ngSwitchCase="'1'"><span class="bi bi-caret-up-fill"></span></td>
+              <td *ngSwitchCase="'2'"><span class="bi bi-star-fill text-warning"></span></td>
+              <td *ngSwitchCase="'3'"><span class="bi bi-exclamation-circle-fill text-danger"></span></td>
+            </ng-container>
             <td>{{todo.id}}</td>
             <td>{{todo.description}}</td>
             <td>{{todo.dueDate}}</td>
             <td>{{todo.category}}</td>
-            <td><button class="btn btn-danger"><span class="bi bi-trash"></span></button></td>
+            @if(dataService.deleteTodoSetting){<td><button class="btn btn-danger" (click)="dataService.deleteTodo(todo.id)"><span class="bi bi-trash"></span></button>}
+            @else {<td>&nbsp;</td>}
           </tr>
+          }
+          @for (todo of dataService.doneTodos | searchFilter: searchTerm; track $index){
+          <tr (dblclick)="dataService.changeStatus(todo)">
+            <td [class]="todo.status ? 'bi bi-check' : ''"></td>
+            <ng-container [ngSwitch]="todo.priority">
+              <td *ngSwitchDefault></td>
+              <td *ngSwitchCase="'1'"><span class="bi bi-caret-up-fill"></span></td>
+              <td *ngSwitchCase="'2'"><span class="bi bi-star-fill text-warning"></span></td>
+              <td *ngSwitchCase="'3'"><span class="bi bi-exclamation-circle-fill text-danger"></span></td>
+            </ng-container>
+            <td>{{todo.id}}</td>
+            <td>{{todo.description}}</td>
+            <td>{{todo.dueDate}}</td>
+            <td>{{todo.category}}</td>
+            @if(dataService.deleteTodoSetting){<td><button class="btn btn-danger" (click)="dataService.deleteTodo(todo.id)"><span class="bi bi-trash"></span></button>}
+            @else {<td>&nbsp;</td>}
+          </tr>
+          }
+        }
+        @else {
+          @for (todo of (dataService.filteredTodos.length > 0 ? dataService.filteredTodos: dataService.Todos) | searchFilter: searchTerm; track $index){
+            <tr (dblclick)="dataService.changeStatus(todo)">
+              <td [class]="todo.status ? 'bi bi-check' : ''"></td>
+              <ng-container [ngSwitch]="todo.priority">
+                <td *ngSwitchDefault></td>
+                <td *ngSwitchCase="'1'"><span class="bi bi-caret-up-fill"></span></td>
+                <td *ngSwitchCase="'2'"><span class="bi bi-star-fill text-warning"></span></td>
+                <td *ngSwitchCase="'3'"><span class="bi bi-exclamation-circle-fill text-danger"></span></td>
+              </ng-container>
+              <td>{{todo.id}}</td>
+              <td>{{todo.description}}</td>
+              <td>{{todo.dueDate}}</td>
+              <td>{{todo.category}}</td>
+              @if(dataService.deleteTodoSetting){<td><button class="btn btn-danger" (click)="dataService.deleteTodo(todo.id)"><span class="bi bi-trash"></span></button>}
+            @else {<td>&nbsp;</td>}
+            </tr>
+          }
         }
       </tbody>
     </table>
