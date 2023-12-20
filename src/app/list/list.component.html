@@ -1,0 +1,42 @@
+<div>
+  <div class="row">
+    <div>
+      <h2>Todo-Liste</h2>
+    </div>
+    <form>
+      <div class="input-group mb-3">
+        <span class="bi bi-search input-group-text"></span>
+        <input aria-describedby="basic-addon1" aria-label="search" class="form-control" placeholder="Wonach suchen Sie?" type="text"
+               [(ngModel)]="searchTerm" (input)="search(searchTerm)" name="searchTerm">
+      </div>
+    </form>
+  </div>
+  <div class="row">
+    <table class="table">
+      <thead>
+        <tr>
+          <th class="col-sm-1">&nbsp;</th>
+          <th class="col-sm-1">&nbsp;</th>
+          <th class="col-sm-1">ID</th>
+          <th class="col-sm-4">Bezeichnung</th>
+          <th class="col-sm-2">Fällig bis</th>
+          <th class="col-sm-2">Kategorie</th>
+          <th class="col-sm-1">&nbsp;</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (todo of dataService.Todos | searchFilter: searchTerm; track $index){
+          <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>{{todo.id}}</td>
+            <td>{{todo.description}}</td>
+            <td>{{todo.dueDate}}</td>
+            <td>{{todo.category}}</td>
+            <td><button class="btn btn-danger"><span class="bi bi-trash"></span></button></td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>

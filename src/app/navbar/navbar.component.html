@@ -1,0 +1,25 @@
+<div class="container bg-dark">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">TODO-APP</a>
+    <button aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"
+            data-target="#navbarNav" data-toggle="collapse" type="button">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item ">
+          <a [routerLinkActiveOptions]="{exact: true}" class="nav-link" routerLink="/"
+             routerLinkActive="active">Liste</a>
+        </li>
+        <li class="nav-item">
+          <a [routerLinkActiveOptions]="{exact: true}" class="nav-link" routerLink="/new" routerLinkActive="active">Neues
+            Todo anlegen</a>
+        </li>
+        <li class="nav-item">
+          <a [routerLinkActiveOptions]="{exact: true}" class="nav-link" routerLink="/settings"
+             routerLinkActive="active">Einstellungen</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</div>

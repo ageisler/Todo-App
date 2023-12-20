@@ -1,0 +1,34 @@
+@if (dataService.saveSuccessful){
+  <div class="alert alert-success">
+    <p>Todo wurde erfolgreich hinzugefügt!</p>
+  </div>
+}
+<form class="form-horizontal" (ngSubmit)="dataService.addTodo(newTodoForm.value)" #newTodoForm="ngForm">
+  <div class="form-group row">
+    <label class="col-sm-2 offset-sm-2 col-form-label ">Bezeichnung:</label>
+    <div class="col-sm-6">
+      <input class="form-control" type="text" [(ngModel)]="dataService.newTodoDescription" name="description">
+    </div>
+  </div>
+  <div class="form-group row mt-4">
+    <label class="col-sm-2 offset-sm-2 col-form-label">Fällig bis:</label>
+    <div class="col-sm-6">
+      <input class="form-control" type="date" [(ngModel)]="dataService.newTodoDueDate" name="dueDate">
+    </div>
+  </div>
+  <div class="form-group row mt-4">
+    <label class="col-sm-2 offset-sm-2 col-form-label">Kategorie</label>
+    <div class="col-sm-6">
+      <select class="form-select" id="categoriesList" [(ngModel)]="dataService.newTodoCategory" name="category">
+        @for (category of dataService.categories; track $index ) {
+          <option [value]="category">{{category}}</option>
+        }
+      </select>
+    </div>
+  </div>
+  <div class="form-group row mt-4">
+    <div class="col-sm-2 offset-sm-4">
+      <input class="btn btn-primary" type="submit" value="Hinzufügen">
+    </div>
+  </div>
+</form>
