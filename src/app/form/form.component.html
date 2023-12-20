@@ -26,7 +26,7 @@
       <div class="d-flex align-items-center"> <!-- Use flex container to align items horizontally -->
         @if(showInputField){
           <input type ="text" class="form-control" id="categoriesList" [(ngModel)]="dataService.newTodoCategory" name="category" required>
-          <button class="btn btn-primary" (click)="showInputField = false"><span class="bi bi-abort"></span></button>
+          <button class="btn btn-primary" (click)="showInputField = false"><span class="bi bi-x-lg"></span></button>
         }
         @else {
         <select class="form-select" id="categoriesList" [(ngModel)]="dataService.newTodoCategory" name="category" required>

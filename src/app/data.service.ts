@@ -81,6 +81,7 @@ export class DataService {
         this.saveTodosToLocalStorage();
         this.showSaveBanner("Erfolgreich hinzugefügt", true);
         this.clearForm(newTodoForm);
+        this.loadAllCategories();
       } catch (e) {
         console.error(e);
         this.showSaveBanner("Fehler beim Hinzufügen!", false);
